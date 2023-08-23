@@ -1,0 +1,32 @@
+<div>
+  <label for="buttonCountInput">輸入數字：</label>
+  <input type="number" id="buttonCountInput" [(ngModel)]="buttonCount" (input)="generateButtons()" />
+
+  <div>
+    <label>選擇類型：</label>
+    <label *ngFor="let option of options">
+      <input type="radio" name="option" [(ngModel)]="selectedOption" [value]="option"
+      [disabled]="option === '現場' && selectedDropdownOption === 'noOnsite'" /> {{ option }}
+    </label>
+  </div>
+
+  <div>
+    <select [(ngModel)]="selectedDropdownOption" (change)="updateButtonLabels()">
+      <option value="none">不做更動</option>
+      <option value="singleReserveDoubleOnsite">單號預約雙號現場</option>
+      <option value="singleOnsiteDoubleReserve">單號現場雙號預約</option>
+      <option value="noOnsite">不接受現場</option>
+    </select>
+  </div>
+
+  <div>
+    <button *ngFor="let button of buttons" (click)="updateButtonLabel(button)"
+    [ngStyle]="{ 'background-color': getButtonColor(button.label) }">
+    {{ button.label }}
+    </button>
+  </div>
+
+  <div>
+    <button (click)="exportButtonsToJson()">匯出按鈕狀態為 JSON</button>
+  </div>
+</div>

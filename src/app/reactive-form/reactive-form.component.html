@@ -1,0 +1,36 @@
+<form [formGroup]="personalForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="id">病歷號碼：</label>
+    <input type="text" formControlName="id"/>
+  </div>
+  <div>
+    <label for="personalId">身分證字號：</label>
+    <input type="text" formControlName="personalId"/>
+  </div>
+  <div>
+    <label for="name">姓名：</label>
+    <input type="text" formControlName="name"/>
+  </div>
+  <div>
+    <label for="sex">性別：</label>
+    <input type="text" formControlName="sex"/>
+  </div>
+  <div>
+    <label for="birthday">生日：</label>
+    <input type="text" formControlName="birthday"/>
+  </div>
+  <div>
+    <label for="phone">電話：</label>
+    <input type="text" formControlName="phone"/>
+  </div>
+  <div>
+    <label for="address">地址：</label>
+    <input type="text" formControlName="address"/>
+  </div>
+  <p>姓名的值: {{ personalForm.get('name')?.value }}</p>
+  <div class="button">
+    <button type="button" (click)="onModifyNameByPatch()">改某一個屬性(PatchValue)</button>
+    <button type="button" (click)="onModifyNameBySet()">改整個物件(SetValue)</button>
+    <button type="submit" [disabled]="!personalForm.valid">送出</button>
+  </div>
+</form>
